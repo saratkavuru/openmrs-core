@@ -325,9 +325,9 @@ public class Context {
 	 */
 	public static void becomeUser(String systemId) throws ContextAuthenticationException {
 		if (log.isInfoEnabled()) {
-			if(!systemId.contains(' ') || !systemId.contains(',') || !systemId.contains('#') || !systemId.contains('%') || !systemId.contains('\\')
-			|| !systemId.contains('(') || !systemId.contains(')') || !systemId.contains('{') || !systemId.contains('}') || !systemId.contains('[')
-			|| !systemId.contains(']') )
+			if(!systemId.contains(' ') && !systemId.contains(',') && !systemId.contains('#') && !systemId.contains('%') && !systemId.contains('\\')
+			&& !systemId.contains('(') && !systemId.contains(')') && !systemId.contains('{') && !systemId.contains('}') && !systemId.contains('[')
+			&& !systemId.contains(']') )
 				log.info("systemId: " + systemId);
 		}
 
