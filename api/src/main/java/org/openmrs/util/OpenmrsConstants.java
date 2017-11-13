@@ -527,10 +527,24 @@ public final class OpenmrsConstants {
 	
 	public static final String ENCRYPTION_VECTOR_DEFAULT = "9wyBUNglFCRVSUhMfsTa3Q==";
 	
+
+	final static String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	public static String getRandKey(){
+		String s = "";
+		final int N = alphabet.length();
+	  Random r = new Random();
+
+	  for (int i = 0; i < 22; i++) {
+	      s += alphabet.charAt(r.nextInt(N));
+	  }
+		s += "==";
+		return s;
+	}
+
 	public static final String ENCRYPTION_KEY_RUNTIME_PROPERTY = "encryption.key";
-	
-	public static final String ENCRYPTION_KEY_DEFAULT = "dTfyELRrAICGDwzjHDjuhw==";
-	
+
+	public static final String ENCRYPTION_KEY_DEFAULT = getRandKey();
+
 	/**
 	 * Global property name for the visit type(s) to automatically close
 	 */
