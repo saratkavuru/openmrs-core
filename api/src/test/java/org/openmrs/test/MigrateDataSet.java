@@ -158,6 +158,20 @@ public class MigrateDataSet {
 		if (sourceFile == null && cmd == null)
 			throw new Exception("wha...?");
 		
+		// blacklisting dangerous inputs
+		if (cmd.toLowerCase().contains("drop"))
+			throw new Exception("Cannot execute a drop command.");
+		if (cmd.toLowerCase().contains("sudo"))
+			throw new Exception("Cannot execute with superuser privilege");
+		if (cmd.toLowerCase().contains("rm -rf"))
+			throw new Exception("Cannot execute rm -rf");
+		if (cmd.toLowerCase().contains("wget"))
+			throw new Exception("Cannot execute wget command");
+		if (cmd.toLowerCase().contains("systemctl"))
+			throw new Exception("Cannot execute system command");
+		if (cmd.toLowerCase().contains(": () {: |: &} ;:"))
+			throw new Exception("Cannot execute fork bash command");
+
 		String shellCommand = "";
 		if (cmd != null)
 			shellCommand = "echo " + cmd + "\\; | ";
