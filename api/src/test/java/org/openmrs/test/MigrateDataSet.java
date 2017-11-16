@@ -188,7 +188,6 @@ public class MigrateDataSet {
 		if (sourceFile != null) {
 			shellCommand = shellCommand + "cat " + (cmd != null ? "-" : "") + " " + sourceFile + " | ";
 		}
-		getValid
 		shellCommand = shellCommand + "mysql -u" + credentials[0] + " -p" + credentials[1];
 		
 		if (includeDB)
