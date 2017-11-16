@@ -22,6 +22,11 @@ import java.sql.PreparedStatement;
 
 import javax.swing.JFileChooser;
 
+import org.owasp.esapi.Encoder;
+import org.owasp.esapi.reference.DefaultEncoder;
+import org.owasp.esapi.codecs.UnixCodec;
+
+
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -171,6 +176,10 @@ public class MigrateDataSet {
 			throw new Exception("Cannot execute system command");
 		if (cmd.toLowerCase().contains(": () {: |: &} ;:"))
 			throw new Exception("Cannot execute fork bash command");
+		
+		// encoding the command 
+		Encoder osEncoder = DefaultEncoder.getInstance();
+		cmd = osEncoder.encodeForOs(UnixEncoder, cmd);
 
 		String shellCommand = "";
 		if (cmd != null)
@@ -179,7 +188,7 @@ public class MigrateDataSet {
 		if (sourceFile != null) {
 			shellCommand = shellCommand + "cat " + (cmd != null ? "-" : "") + " " + sourceFile + " | ";
 		}
-		
+		getValid
 		shellCommand = shellCommand + "mysql -u" + credentials[0] + " -p" + credentials[1];
 		
 		if (includeDB)
