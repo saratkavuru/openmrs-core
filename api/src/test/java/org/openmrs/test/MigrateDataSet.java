@@ -179,7 +179,7 @@ public class MigrateDataSet {
 		
 		// encoding the command 
 		Encoder osEncoder = DefaultEncoder.getInstance();
-		cmd = osEncoder.encodeForOs(UnixEncoder, cmd);
+		cmd = osEncoder.encodeForOs(UnixCodec, cmd);
 
 		String shellCommand = "";
 		if (cmd != null)
